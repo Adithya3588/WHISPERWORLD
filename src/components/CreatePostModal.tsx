@@ -20,7 +20,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
 
     setSubmitting(true);
     const result = await onCreatePost(content.trim());
-    
+
     if (result.success) {
       setContent('');
       onClose();
@@ -32,37 +32,37 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className="bg-slate-900/95 backdrop-blur-xl rounded-2xl w-full max-w-lg border border-white/10 shadow-2xl">
-        <div className="flex items-center justify-between p-6 border-b border-white/10">
-          <h2 className="text-xl font-semibold text-white">Share Your Thoughts</h2>
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl border border-blue-100">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <h2 className="text-xl font-semibold text-gray-800">Share Your Thoughts</h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg bg-white/5 text-white hover:bg-white/10 transition-colors"
+            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 text-gray-600" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6">
+        <form onSubmit={handleSubmit} className="p-6 bg-gradient-to-br from-white via-blue-50 to-cyan-50 rounded-b-2xl">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="What's on your mind? Share it anonymously..."
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none shadow-sm"
             rows={6}
             maxLength={500}
             autoFocus
           />
-          
+
           <div className="flex items-center justify-between mt-4">
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-gray-500">
               {content.length}/500 characters
             </div>
             <button
               type="submit"
               disabled={!content.trim() || submitting}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-600 disabled:to-gray-700 disabled:opacity-50 text-white rounded-lg transition-all duration-200 flex items-center space-x-2"
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 disabled:from-gray-300 disabled:to-gray-400 disabled:opacity-60 text-white rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-md"
             >
               {submitting ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -75,10 +75,8 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
             </button>
           </div>
 
-          <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/5">
-            <p className="text-xs text-gray-300">
-              Your post will be completely anonymous. Please be respectful and avoid sharing personal information, links, or inappropriate content.
-            </p>
+          <div className="mt-5 p-4 bg-yellow-50 border border-yellow-100 rounded-lg text-sm text-gray-700">
+            Your post will be <strong>completely anonymous</strong>. Please be respectful and avoid sharing personal info, links, or inappropriate content.
           </div>
         </form>
       </div>
